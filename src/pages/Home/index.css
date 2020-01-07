@@ -1,0 +1,10 @@
+.barBox {
+  position: fixed;
+  /* height: 100%; */
+  width: 100%;
+  bottom: 0
+}
+
+.barBox .iconfont {
+  font-size: 24px;
+}
