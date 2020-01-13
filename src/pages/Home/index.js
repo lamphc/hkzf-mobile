@@ -5,7 +5,6 @@ import { Route, Link } from 'react-router-dom';
 import { TabBar } from 'antd-mobile';
 import tabBars from '../../utils/tabbar_config';
 
-import '../../assets/fonts/iconfont.css'
 import './index.css'
 
 import Index from '../Index';

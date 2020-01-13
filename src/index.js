@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import 'antd-mobile/dist/antd-mobile.css';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+// 字体图表样式
+import './assets/fonts/iconfont.css'
+// 全局样式
+import './index.css';
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

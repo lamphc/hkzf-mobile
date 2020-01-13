@@ -1,0 +1,31 @@
+/* 菜单样式 */
+.nav {
+    padding-top:13px;
+    text-align: center;
+}
+
+.nav img {
+    height: 48px;
+}
+
+.nav p {
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+// 租房小组
+.group {
+    overflow: hidden;
+    padding: 0 10px;
+    background-color: #f6f5f6;
+    &-title {
+        margin: 15px 0 15px 0;
+        h3 {
+            font-size: 15px;
+        }
+        span {
+            font-size: 14px;
+            color: #787d82;
+        }
+    }
+}
