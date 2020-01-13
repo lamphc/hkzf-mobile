@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Carousel } from 'antd-mobile';
+import { Carousel, Flex, Grid } from 'antd-mobile';
 
 import { BASEURL } from '../../utils/axios';
-import { getSwiper } from '../../utils/api/home';
+import { getSwiper, getGroup } from '../../utils/api/home';
 
 import './index.scss';
 
@@ -13,7 +13,7 @@ import Nav3 from '../../assets/images/nav-3.png';
 import Nav4 from '../../assets/images/nav-4.png';
 
 
-import { Flex } from 'antd-mobile';
+
 
 // 首页菜单数据
 const navs = [
@@ -43,25 +43,40 @@ const navs = [
   }
 ]
 
+const data1 = Array.from(new Array(4)).map(() => ({
+  icon: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
+}));
+
 class Index extends Component {
   state = {
     data: [],
     imgHeight: 234,
-    aplay: false
+    aplay: false,
+    group: []
   }
   componentDidMount() {
-    this.getSwiper()
+    this.getSwiper();
+    this.getGroup()
   }
 
   getSwiper = async () => {
     let res = await getSwiper();
     this.setState({
-      data: res.data.body,
+      data: res.data,
     }, () => {
       this.setState({
         aplay: true
       })
     })
+  }
+
+  getGroup = async () => {
+    let res = await getGroup();
+    if (res.status === 200) {
+      this.setState({
+        group: res.data
+      })
+    }
   }
 
   renderNavs = () => {
@@ -115,6 +130,24 @@ class Index extends Component {
             <h3>租房小组</h3>
             <span>更多</span>
           </Flex>
+          <Grid
+            data={this.state.group}
+            columnNum={2}
+            square={false}
+            activeStyle
+            hasLine={false}
+            renderItem={item => {
+              return (
+                <Flex className="grid-item" justify="between">
+                  <div className="desc">
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </div>
+                  <img src={`http://localhost:8080${item.imgSrc}`} alt="" />
+                </Flex>
+              )
+            }}
+          />
         </div>
       </div>
     );

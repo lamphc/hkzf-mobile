@@ -7,3 +7,8 @@ import axios from '../axios';
 export const getSwiper = () => {
   return axios.get('/home/swiper')
 }
+
+// 获取租房小组
+export const getGroup = (area = 'AREA%7C88cff55c-aaa4-e2e0') => {
+  return axios.get(`/home/groups?area=${area}`)
+}
