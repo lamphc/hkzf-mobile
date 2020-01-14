@@ -53,7 +53,7 @@ class Home extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div>
+      <div className="home">
         {/* <Link to="/home/index">首页</Link>
         <Link to="/home/house">找房</Link>
        <Link to="/home/profile">我的</Link> */}

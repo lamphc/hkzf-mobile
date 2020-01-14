@@ -11,6 +11,7 @@ body {
     box-sizing: border-box; 
 }
 
-.app {
-    padding-bottom: 50px;
+
+.app, #root,#container {
+    height: 100%;
 }
