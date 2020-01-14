@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-ro
 // 导入业务功能组件
 import Home from './pages/Home';
 import CityList from './pages/CityList';
+import Map from './pages/Map';
 
 const NotFound = () => <center><h2>404...</h2></center>
 
@@ -16,9 +17,12 @@ function App() {
           {/* <Button type="primary">按钮</Button> */}
           {/* <Link to="/home">首页</Link>
         <Link to="/cityList">城市选择</Link> */}
+          {/* 一级路由 */}
           <Route exact path="/" render={() => <Redirect to="/home/index" />} />
           <Route path="/home" component={Home} />
-          {/* <Route path="/cityList" component={CityList} /> */}
+          <Route path="/map" component={Map} />
+          <Route path="/cityList" component={CityList} />
+          {/* 404 */}
           <Route component={NotFound} />
         </Switch>
       </div>

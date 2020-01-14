@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Flex, Grid, WingBlank } from 'antd-mobile';
+import { Carousel, Flex, Grid, WingBlank, NavBar, SearchBar } from 'antd-mobile';
 
 import { BASEURL } from '../../utils/axios';
 import { getSwiper, getGroup, getNews } from '../../utils/api/home';
@@ -14,7 +14,8 @@ class Index extends Component {
     group: [],
     news: [],
     imgHeight: 234,
-    aplay: false
+    aplay: false,
+    keyword: ''
   }
   componentDidMount() {
     this.loadDatas()
@@ -119,9 +120,35 @@ class Index extends Component {
     ))
   }
 
+  // 渲染顶部导航
+  renderTopNav = () => {
+    const { push } = this.props.history;
+    return (
+      <Flex justify="around" className="topNav">
+        <div className="searchBox">
+          <div className="city" onClick={() => push('/cityList')}>
+            北京<i className="iconfont icon-arrow" />
+          </div>
+          <SearchBar
+            value={this.state.keyword}
+            onChange={(v) => this.setState({ keyword: v })}
+            placeholder="请输入小区或地址"
+          />
+        </div>
+        <div className="map">
+          <i key="0" className="iconfont icon-map" onClick={() => push('/map')} />
+        </div>
+      </Flex>
+    )
+  }
+
   render() {
     return (
       <div>
+        {/* 顶部导航 */}
+        {
+          this.renderTopNav()
+        }
         {/* 轮播 */}
         <Carousel
           autoplay={this.state.aplay}

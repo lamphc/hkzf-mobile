@@ -57,6 +57,7 @@ class Home extends Component {
         {/* <Link to="/home/index">首页</Link>
         <Link to="/home/house">找房</Link>
        <Link to="/home/profile">我的</Link> */}
+        {/* 首页下二级路由 */}
         <Route path="/home/index" component={Index} />
         <Route path="/home/house" component={House} />
         <Route path="/home/profile" component={Profile} />

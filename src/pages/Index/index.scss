@@ -1,3 +1,50 @@
+// 顶部导航和搜索
+.topNav {
+  position: fixed;
+  top:20px;
+  left:0;
+  right:0;
+  z-index: 999;
+  width: 100%;
+  padding:0 10px;
+  .searchBox {
+    flex:9;
+  }
+.city {
+  position: absolute;
+  left:20px;
+  top:10px;
+  z-index: 100;
+  padding-right: 8px;
+  border-right: 1px solid #eee;
+  // 动画文字抖动解决
+  backface-visibility: hidden;
+  .icon-arrow {
+    color:#7f7f80;
+    vertical-align: middle;
+    font-size: 12px;
+  }
+}
+.am-search {
+  padding: 0 8px 0 50px;
+  height: 36px;
+  overflow: hidden;
+ 
+  border-radius: 100px;
+}
+.am-search-input,.am-search {
+  background-color: #fafafa;
+}
+.map {
+  flex:1;
+  text-align: right;
+  .icon-map {
+    font-size: 24px;
+  }
+}
+
+}
+
 /* 菜单样式 */
 .nav {
     padding-top:13px;
