@@ -2,6 +2,7 @@
 .nav {
     padding-top:13px;
     text-align: center;
+    background-color: #fff;
 }
 
 .nav img {
@@ -17,7 +18,6 @@
 .group {
     overflow: hidden;
     padding: 0 10px;
-    background-color: #f6f5f6;
     &-title {
         margin: 15px 0 15px 10px;
         h3 {
@@ -57,3 +57,48 @@
         }
     }
 }
+
+// 最新资讯
+.news {
+    padding: 10px;
+    background-color: #fff;
+    overflow: hidden;
+    .group-title {
+      margin: 10px 0 5px 10px;
+      font-size: 15px;
+    }
+    &-item {
+      height: 120px;
+      padding: 15px 10px 15px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    &-item:last-child {
+      border: 0;
+    }
+    .imgwrap {
+      float: left;
+      height: 90px;
+      width: 120px;
+    }
+    .img {
+      height: 90px;
+      width: 120px;
+    }
+    .content {
+      overflow: hidden;
+      height: 100%;
+      padding-left: 12px;
+    }
+    .title {
+      margin: 0;
+      font-size: 14px;
+    }
+    .info {
+      width: 100%;
+      color: #9c9fa1;
+      font-size: 12px;
+    }
+    .message-title {
+      margin-bottom: 48px;
+    }
+  }
