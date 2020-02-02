@@ -3,6 +3,7 @@ import { Carousel, Flex, Grid, WingBlank, NavBar, SearchBar } from 'antd-mobile'
 
 import { BASEURL } from '../../utils/axios';
 import { getSwiper, getGroup, getNews } from '../../utils/api/home';
+import { getCityInfo } from '../../utils/api/city';
 import navs from '../../utils/home_navs';
 
 import './index.scss';
@@ -15,15 +16,34 @@ class Index extends Component {
     news: [],
     imgHeight: 234,
     aplay: false,
-    keyword: ''
+    keyword: '',
+    currCity: {
+      label: '--',
+      value: ''
+    }
   }
   componentDidMount() {
-    this.loadDatas()
+
+    this.getCurrCity()
+  }
+
+  // 获取当前城市信息
+  getCurrCity = () => {
+    const myCity = new window.BMap.LocalCity();
+    myCity.get(async (result) => {
+      let res = await getCityInfo(result.name);
+      console.log(res);
+      res.status === 200 && this.setState({
+        currCity: res.data
+      }, () => {
+        this.loadDatas();
+      })
+    });
   }
 
   // 获取初始化数据
   loadDatas = async () => {
-    const apis = [getSwiper(), getGroup(), getNews()];
+    const apis = [getSwiper(), getGroup(this.state.currCity.value), getNews(this.state.currCity.value)];
     let res = await Promise.all(apis);
     console.log('all datas:', res);
     this.setState({
@@ -127,7 +147,7 @@ class Index extends Component {
       <Flex justify="around" className="topNav">
         <div className="searchBox">
           <div className="city" onClick={() => push('/cityList')}>
-            北京<i className="iconfont icon-arrow" />
+            {this.state.currCity.label}<i className="iconfont icon-arrow" />
           </div>
           <SearchBar
             value={this.state.keyword}

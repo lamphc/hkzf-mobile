@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { NavBar, Icon } from 'antd-mobile';
+
+import styles from './index.module.css'
 
 class Map extends Component {
 
@@ -17,8 +20,17 @@ class Map extends Component {
   }
   render() {
     return (
-      <div id="container">
-
+      <div className={styles.map}>
+        <NavBar
+          mode="light"
+          icon={<Icon type="left" />}
+          onLeftClick={() => {
+            this.props.history.goBack()
+          }}
+        >
+          地图
+</NavBar>
+        <div id="container"></div>
       </div>
     );
   }

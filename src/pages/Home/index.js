@@ -5,7 +5,7 @@ import { Route, Link } from 'react-router-dom';
 import { TabBar } from 'antd-mobile';
 import tabBars from '../../utils/tabbar_config';
 
-import './index.css'
+import './index.scss'
 
 import Index from '../Index';
 import House from '../House';

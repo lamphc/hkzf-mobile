@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 // 字体图表样式
 import './assets/fonts/iconfont.css'
 // 全局样式
-import './index.css';
+import './index.scss';
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
