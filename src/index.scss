@@ -5,6 +5,12 @@ body {
     background-color: #f6f5f6;
 }
 
+ul,li {
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
 * {
     touch-action: pan-y;
     /* touch-action: none; */

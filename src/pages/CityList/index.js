@@ -1,28 +1,56 @@
 import React, { Component } from 'react';
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar, Icon, Toast } from 'antd-mobile';
 import { getCities, getHotCities } from '../../utils/api/city';
-import { getCurrCity } from '../../utils';
+import { getCurrCity, setLocalData, CURR_CITY } from '../../utils';
 
 import { List, AutoSizer } from 'react-virtualized';
 
-import './index.css'
+import './index.scss';
 
-// List data as an array of strings
-const list = new Array(100)
 
 class CityList extends Component {
 
   state = {
-    w: 0,
-    h: 0
+    cityIndex: [],
+    cityList: {},
+    // 当前位置的索引,激活索引样式状态
+    activeIndex: 0
   }
 
   componentDidMount() {
     this.getCities();
-    this.setState({
-      w: document.documentElement.clientWidth,
-      h: document.documentElement.clientHeight
-    })
+    // 获取列表实例
+    this.listRef = React.createRef()
+  }
+
+  // 动态获取列表行高
+  getRowHeight = ({ index }) => {
+    const { cityIndex, cityList } = this.state;
+    const key = cityIndex[index];
+    return 36 + 50 * cityList[key].length;
+  }
+
+  // 格式化字母
+  formatLetter(letter, first) {
+    switch (letter) {
+      case 'hot':
+        return first ? '热' : '热门城市';
+      case '#':
+        return first ? '当' : '当前城市';
+      default:
+        return letter.toUpperCase();
+    }
+  }
+
+  // 切换城市
+  changeCity = (city) => {
+    const hasData = ['北京', '上海', '广州', '深圳'];
+    if (hasData.includes(city.label)) {
+      setLocalData(CURR_CITY, JSON.stringify(city));
+      this.props.history.goBack()
+    } else {
+      Toast.info('该城市暂无房源数据！', 2)
+    }
   }
 
   // 渲染列表项
@@ -33,9 +61,14 @@ class CityList extends Component {
     isVisible, // This row is visible within the List (eg it is not an overscanned row)
     style, // Style object to be applied to row (to position it)
   }) => {
+    const { cityIndex, cityList } = this.state;
+    const letter = cityIndex[index];
     return (
-      <div className="item" key={key} style={style}>
-        {index}
+      <div key={key} style={style} className="city">
+        <div className="title">{this.formatLetter(letter)}</div>
+        {
+          cityList[letter].map((item) => <div onClick={() => this.changeCity(item)} key={item.value} className="name">{item.label}</div>)
+        }
       </div>
     );
   }
@@ -59,6 +92,37 @@ class CityList extends Component {
     }
   }
 
+  // 渲染右侧索引
+  renderCityIndex = () => {
+    const { cityIndex, activeIndex } = this.state;
+    return cityIndex.map((item, index) => {
+      return (
+        <li
+          key={item}
+          className="city-index-item"
+          onClick={() => {
+            console.log(this.listRef);
+            this.listRef.current.scrollToRow(index)
+          }}
+        >
+          <span className={activeIndex === index ? 'index-active' : ''}>
+            {this.formatLetter(item, true)}
+          </span>
+        </li>
+      )
+    })
+  }
+
+  // 滚动列表触发
+  onRowsRendered = ({ startIndex }) => {
+    if (this.state.activeIndex !== startIndex) {
+      console.log(startIndex);
+      this.setState({
+        activeIndex: startIndex
+      })
+    }
+  }
+
   // 获取城市列表数据
   getCities = async () => {
     let res = await getCities();
@@ -79,6 +143,10 @@ class CityList extends Component {
       cityIndex.unshift('#');
       cityList['#'] = [cur];
       console.log('formated:', cityList, cityIndex);
+      this.setState({
+        cityIndex,
+        cityList
+      })
     }
   }
 
@@ -100,13 +168,21 @@ class CityList extends Component {
           {({ height, width }) => (
             <List
               height={height}
-              rowCount={list.length}
-              rowHeight={100}
+              // scrollToIndex={this.state.activeIndex}
+              ref={this.listRef}
+              scrollToAlignment="start"
+              onRowsRendered={this.onRowsRendered}
+              rowCount={this.state.cityIndex.length}
+              rowHeight={this.getRowHeight}
               rowRenderer={this.rowRenderer}
               width={width}
             />
           )}
         </AutoSizer>
+        {/* 右侧索引列表 */}
+        <ul className="city-index">
+          {this.renderCityIndex()}
+        </ul>
       </div>
     );
   }
