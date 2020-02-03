@@ -69,13 +69,9 @@ class Home extends Component {
             tabBarPosition="bottom"
             noRenderContent={true}
           >
-
             {
               this.renderTabBarItems()
             }
-
-
-
           </TabBar>
         </div >
       </div>

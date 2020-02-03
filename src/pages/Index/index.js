@@ -7,6 +7,7 @@ import { getCityInfo } from '../../utils/api/city';
 import navs from '../../utils/home_navs';
 
 import './index.scss';
+import { getCurrCity } from '../../utils';
 
 
 class Index extends Component {
@@ -23,23 +24,34 @@ class Index extends Component {
     }
   }
   componentDidMount() {
-
     this.getCurrCity()
+
   }
+
+
 
   // 获取当前城市信息
-  getCurrCity = () => {
-    const myCity = new window.BMap.LocalCity();
-    myCity.get(async (result) => {
-      let res = await getCityInfo(result.name);
-      console.log(res);
-      res.status === 200 && this.setState({
-        currCity: res.data
-      }, () => {
-        this.loadDatas();
-      })
-    });
+  async getCurrCity() {
+    let data = await getCurrCity();
+    this.setState({
+      currCity: data
+    }, () => {
+      this.loadDatas();
+    })
+
   }
+  // getCurrCity = () => {
+  //   const myCity = new window.BMap.LocalCity();
+  //   myCity.get(async (result) => {
+  //     let res = await getCityInfo(result.name);
+  //     console.log(res);
+  //     res.status === 200 && this.setState({
+  //       currCity: res.data
+  //     }, () => {
+  //       this.loadDatas();
+  //     })
+  //   });
+  // }
 
   // 获取初始化数据
   loadDatas = async () => {

@@ -1,0 +1,7 @@
+.cityList {
+  height: calc(100% - 45px);
+}
+
+.item {
+  border-bottom:1px solid #ccc;
+}

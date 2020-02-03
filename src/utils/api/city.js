@@ -12,3 +12,8 @@ export const getCityInfo = (cityName) => {
 export const getCities = (level = 1) => {
   return axios.get(`/area/city?level=${level}`)
 }
+
+// 获取热门城市
+export const getHotCities = () => {
+  return axios.get(`/area/hot`)
+}
