@@ -64,7 +64,7 @@ class CityList extends Component {
     const { cityIndex, cityList } = this.state;
     const letter = cityIndex[index];
     return (
-      <div key={key} style={style} className="city">
+      <div key={key} style={style} className="city-item">
         <div className="title">{this.formatLetter(letter)}</div>
         {
           cityList[letter].map((item) => <div onClick={() => this.changeCity(item)} key={item.value} className="name">{item.label}</div>)
