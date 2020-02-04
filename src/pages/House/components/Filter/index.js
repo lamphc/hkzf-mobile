@@ -15,15 +15,28 @@ const titleSelectedStatus = {
   price: false,
   more: false
 }
+
+// 选中数据维护
+const selectedValues = {
+  area: ['area', 'null'],
+  // area: ['area', 'AREA|69cc5f6d-4f29-a77c', 'AREA|73aa1890-64c7-51d9'],
+  mode: ['null'],
+  // mode: ['true'],
+  price: ['null'],
+  // price: ['PRICE|1000'],
+  more: []
+}
 export default class Filter extends Component {
   // 标题高亮状态
   state = {
-    titleSelectedStatus,
+    titleSelectedStatus: { ...titleSelectedStatus },
     // 打开当前type状态
     openType: ''
   }
 
   componentDidMount() {
+    // 存储到实例属性上
+    this.selectedValues = { ...selectedValues };
     this.getFilterData()
   }
 
@@ -40,7 +53,7 @@ export default class Filter extends Component {
   // 传递给子组件控制状态的方法
   onTitleClick = (type) => {
     this.setState({
-      titleSelectedStatus: { ...this.state.titleSelectedStatus, [type]: true },
+      titleSelectedStatus: { ...titleSelectedStatus, [type]: true },
       openType: type
     })
   }
@@ -53,15 +66,48 @@ export default class Filter extends Component {
 
   // 关闭前三个过滤器内容和遮罩层
   onCancel = () => {
+    let newSel = this.handlerSel();
     this.setState({
-      openType: ''
+      openType: '',
+      titleSelectedStatus: newSel
     })
   }
 
+  // 处理筛选器选中后有无条件的高亮状态
+  handlerSel = () => {
+    // 创建新的标题选中状态对象
+    const newTitleSelectedStatus = { ...titleSelectedStatus }
+    Object.keys(this.selectedValues).forEach((key) => {
+      let cur = this.selectedValues[key];
+      if (
+        (key === 'area') && (cur[1] !==
+          "null" || cur[0] === 'subway')) {
+        newTitleSelectedStatus['area'] = true
+      } else if (key === 'mode' && cur[0] !== "null") {
+        newTitleSelectedStatus[key] = true
+      } else if (key === 'price' && cur[0] !== "null") {
+        newTitleSelectedStatus[key] = true
+      } else if (key === 'more' && cur.length !== 0) {
+        // 更多选择项 FilterMore 组件
+        newTitleSelectedStatus[key] = true
+      } else {
+        newTitleSelectedStatus[key] = false
+      }
+    })
+    return newTitleSelectedStatus
+  }
+
   // 确定选择过滤条件
-  onOk = () => {
+  onOk = (sel) => {
+    const { openType } = this.state;
+    console.log('sel:', openType, sel);
+    // 存储到实例属性上
+    this.selectedValues[openType] = sel;
+    let newSel = this.handlerSel();
+    console.log('s', newSel);
     this.setState({
-      openType: ''
+      openType: '',
+      titleSelectedStatus: newSel
     })
   }
 
@@ -85,9 +131,9 @@ export default class Filter extends Component {
           cols = 1
           break;
       }
-      return <FilterPicker data={data} cols={cols} onCancel={this.onCancel} onOk={this.onOk} />
-    }
+      return <FilterPicker key={openType} data={data} value={this.selectedValues[openType]} cols={cols} onCancel={this.onCancel} onOk={this.onOk} />
 
+    }
   }
 
   render() {
