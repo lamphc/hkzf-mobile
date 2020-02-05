@@ -98,18 +98,51 @@ export default class Filter extends Component {
     return newTitleSelectedStatus
   }
 
+  // 处理后台需要的筛选条件数据
+  handlerFilters = (selectedValues) => {
+    // 筛选条件数据
+    const { area, mode, price, more } = selectedValues;
+    // 组装数据
+    const filters = {};
+    // area | subway
+    let areaKey = area[0], aval;
+    if (area.length === 2) {
+      aval = area[1]
+    } else {
+      if (area[2] !== 'null') {
+        aval = area[2]
+      } else {
+        aval = area[1]
+      }
+    }
+    filters[areaKey] = aval;
+    // mode
+    filters.mode = mode[0]
+    // price
+    filters.price = price[0]
+    // more
+    filters.more = more.join(',')
+    console.log('filters:', filters);
+    return filters
+  }
+
   // 确定选择过滤条件
   onOk = (sel) => {
     const { openType } = this.state;
     console.log('sel:', openType, sel);
     // 存储到实例属性上
     this.selectedValues[openType] = sel;
+    // 当前选中的所有筛选条件数据
+    console.log('all-sels:', this.selectedValues)
     // 处理高亮
     let newSel = this.handlerSel();
     console.log('s', newSel);
     this.setState({
       openType: '',
       titleSelectedStatus: newSel
+    }, () => {
+      // 处理筛选条件数据
+      this.handlerFilters(this.selectedValues)
     })
   }
 
@@ -138,6 +171,20 @@ export default class Filter extends Component {
 
     }
   }
+  // 渲染和处理FilterMore组件
+  renderFilterMore = () => {
+    const {
+      openType
+    } = this.state;
+    if (openType === 'more') {
+      console.log(this.filterData);
+      const { roomType, oriented, floor, characteristic } = this.filterData;
+      const data = { roomType, oriented, floor, characteristic }
+      console.log('n-sel:', this.selectedValues[openType]);
+      return <FilterMore data={data} value={this.selectedValues[openType]} type={openType} onOk={this.onOk} onCancel={this.onCancel} />
+    }
+    return null
+  }
 
   render() {
     return (
@@ -154,6 +201,9 @@ export default class Filter extends Component {
 
           {/* 最后一个菜单对应的内容： */}
           {/* <FilterMore /> */}
+          {
+            this.renderFilterMore()
+          }
         </div>
       </div>
     )
