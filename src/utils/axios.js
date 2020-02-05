@@ -5,7 +5,7 @@ const BASEURL = 'http://localhost:8080';
 // Set config defaults when creating the instance
 const instance = axios.create({
   baseURL: BASEURL,
-  timeout: 1000
+  timeout: 2000
 });
 
 // Alter defaults after instance has been created

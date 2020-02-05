@@ -1,6 +1,9 @@
 .root {
-  position: relative;
+  position: fixed;
+  width: 100%;
   z-index: 3;
+  height: 40px;
+  top: 0;
 }
 
 .mask {
@@ -14,7 +17,8 @@
 }
 
 .content {
-  position: relative;
+  position: absolute;
+  width: 100%;
   z-index: 3;
   background-color: #fff;
 }

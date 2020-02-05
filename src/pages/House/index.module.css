@@ -1,5 +1,6 @@
 .root {
   /* padding-top: 45px; */
+  height: 100%;
 }
 
 /* 顶部导航栏样式 */
@@ -35,4 +36,19 @@
 
 .searchHeader :global(.search) {
   height: 30px;
+}
+
+/* 房屋列表样式 */
+.houseList {
+  margin-top: 40px;
+  padding: 0 15px 50px;
+  background: #fff;
+  height: 100%;
+}
+
+.loading {
+  line-height: 120px;
+  text-align: center;
+  height: 110px;
+  background-color: #f6f5f6;
 }
