@@ -44,6 +44,8 @@ export default class Filter extends Component {
   // 获取筛选条件数据
   getFilterData = async () => {
     const { value } = await getCurrCity();
+    // 保存城市ID
+    this.cityId = value;
     let res = await getHouseFilters(value);
     console.log(res);
     res.status === 200 && (this.filterData = res.data)
@@ -142,7 +144,7 @@ export default class Filter extends Component {
       titleSelectedStatus: newSel
     }, () => {
       // 处理筛选条件数据
-      this.handlerFilters(this.selectedValues)
+      this.props.onFilter(this.handlerFilters(this.selectedValues))
     })
   }
 
