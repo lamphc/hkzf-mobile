@@ -66,6 +66,7 @@ export default class Filter extends Component {
 
   // 关闭前三个过滤器内容和遮罩层
   onCancel = () => {
+    // 处理高亮
     let newSel = this.handlerSel();
     this.setState({
       openType: '',
@@ -88,7 +89,7 @@ export default class Filter extends Component {
       } else if (key === 'price' && cur[0] !== "null") {
         newTitleSelectedStatus[key] = true
       } else if (key === 'more' && cur.length !== 0) {
-        // 更多选择项 FilterMore 组件
+        // 更多选择项 FilterMore 组件情况
         newTitleSelectedStatus[key] = true
       } else {
         newTitleSelectedStatus[key] = false
@@ -103,6 +104,7 @@ export default class Filter extends Component {
     console.log('sel:', openType, sel);
     // 存储到实例属性上
     this.selectedValues[openType] = sel;
+    // 处理高亮
     let newSel = this.handlerSel();
     console.log('s', newSel);
     this.setState({
@@ -131,6 +133,7 @@ export default class Filter extends Component {
           cols = 1
           break;
       }
+      console.log('n-sel:', this.selectedValues[openType])
       return <FilterPicker key={openType} data={data} value={this.selectedValues[openType]} cols={cols} onCancel={this.onCancel} onOk={this.onOk} />
 
     }

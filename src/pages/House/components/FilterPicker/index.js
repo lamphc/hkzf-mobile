@@ -94,6 +94,9 @@ export default class FilterPicker extends Component {
     value: this.props.value
   }
 
+  componentDidMount() {
+    console.log('重新初始化！')
+  }
 
   handlerChange = (value) => {
     this.setState({
