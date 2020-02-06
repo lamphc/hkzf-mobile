@@ -3,7 +3,7 @@ import { getCityInfo } from "./api/city";
 
 // 数据持久化
 // 当前城市KEY
-export const CURR_CITY = 'hkzf_city';
+export const CURR_CITY = 'hkzf_city', TOKEN = 'hkzf_token';
 
 export const getLocalData = (key) => {
   return window.localStorage.getItem(key)

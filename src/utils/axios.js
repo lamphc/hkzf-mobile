@@ -28,6 +28,7 @@ instance.interceptors.response.use(function (response) {
     status: response.data.status,
     data: response.data.body
   }
+  if (response.data.description) data.description = response.data.description;
   return data;
 }, function (error) {
   // Any status codes that falls outside the range of 2xx cause this function to trigger
