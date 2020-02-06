@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import CityList from './pages/CityList';
 import Map from './pages/Map';
 import HouseDetail from './components/HouseDetail';
+import Login from './pages/Login';
 
 const NotFound = () => <center><h2>404...</h2></center>
 
@@ -23,6 +24,8 @@ function App() {
           <Route path="/home" component={Home} />
           {/* 房屋 */}
           <Route path="/detail/:id" component={HouseDetail} />
+          {/* 登录 */}
+          <Route path="/login" component={Login} />
           <Route path="/map" component={Map} />
           <Route path="/cityList" component={CityList} />
           {/* 404 */}
