@@ -37,6 +37,8 @@ export default class Filter extends Component {
   componentDidMount() {
     // 存储到实例属性上
     this.selectedValues = { ...selectedValues };
+    // 获取body元素
+    this.bodyDOM = window.document.body;
     this.getFilterData()
   }
 
@@ -54,6 +56,7 @@ export default class Filter extends Component {
 
   // 传递给子组件控制状态的方法
   onTitleClick = (type) => {
+    this.bodyDOM.className = 'scrollAuto';
     this.setState({
       titleSelectedStatus: { ...titleSelectedStatus, [type]: true },
       openType: type
@@ -73,6 +76,8 @@ export default class Filter extends Component {
     this.setState({
       openType: '',
       titleSelectedStatus: newSel
+    }, () => {
+      this.bodyDOM.className = ''
     })
   }
 
@@ -130,6 +135,7 @@ export default class Filter extends Component {
 
   // 确定选择过滤条件
   onOk = (sel) => {
+    this.bodyDOM.className = ''
     const { openType } = this.state;
     console.log('sel:', openType, sel);
     // 存储到实例属性上

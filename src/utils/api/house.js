@@ -19,3 +19,8 @@ export const getHouseByFilters = (cityId, params, start, end) => {
     }
   })
 }
+
+// 获取房屋详情
+export const getHouseDetail = (id) => {
+  return axios.get(`/houses/${id}`)
+}

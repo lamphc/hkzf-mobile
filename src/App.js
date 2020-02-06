@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-ro
 import Home from './pages/Home';
 import CityList from './pages/CityList';
 import Map from './pages/Map';
+import HouseDetail from './components/HouseDetail';
 
 const NotFound = () => <center><h2>404...</h2></center>
 
@@ -20,6 +21,8 @@ function App() {
           {/* 一级路由 */}
           <Route exact path="/" render={() => <Redirect to="/home/index" />} />
           <Route path="/home" component={Home} />
+          {/* 房屋 */}
+          <Route path="/detail/:id" component={HouseDetail} />
           <Route path="/map" component={Map} />
           <Route path="/cityList" component={CityList} />
           {/* 404 */}

@@ -41,12 +41,12 @@ function HouseItem({ src, title, desc, tags, price, onClick, style }) {
 
 
 HouseItem.propTypes = {
-  // src: PropTypes.string,
-  // title: PropTypes.string,
-  // desc: PropTypes.string,
-  // tags: PropTypes.array.isRequired,
-  // price: PropTypes.number,
-  // onClick: PropTypes.func
+  src: PropTypes.string,
+  title: PropTypes.string,
+  desc: PropTypes.string,
+  tags: PropTypes.array.isRequired,
+  price: PropTypes.number,
+  onClick: PropTypes.func
 }
 
 export default HouseItem

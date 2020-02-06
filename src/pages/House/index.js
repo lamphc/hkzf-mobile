@@ -73,10 +73,11 @@ export default class HouseList extends React.Component {
         </div>
       )
     };
+    // console.log(this.props.history)
     // 处理图片地址
     item.src = BASEURL + item.houseImg;
     // console.log(item);
-    return <HouseItem {...item} key={key} style={style} />
+    return <HouseItem {...item} key={key} onClick={() => { this.props.history.push({ pathname: `/detail/${item.houseCode}` }, { id: item.houseCode }) }} style={style} />
   }
 
   // 判断列表中的每一行是否加载完成
