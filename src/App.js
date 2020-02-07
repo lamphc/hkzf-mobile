@@ -9,6 +9,10 @@ import Map from './pages/Map';
 import HouseDetail from './components/HouseDetail';
 import Login from './pages/Login';
 
+import Rent from './pages/Rent';
+import RentAdd from './pages/Rent/Add';
+import RentSearch from './pages/Rent/Search';
+
 const NotFound = () => <center><h2>404...</h2></center>
 
 function App() {
@@ -26,6 +30,11 @@ function App() {
           <Route path="/detail/:id" component={HouseDetail} />
           {/* 登录 */}
           <Route path="/login" component={Login} />
+          {/* 房源管理 */}
+          <Route path="/rent" exact component={Rent} />
+          <Route path="/rent/add" component={RentAdd} />
+          <Route path="/rent/search" component={RentSearch} />
+
           <Route path="/map" component={Map} />
           <Route path="/cityList" component={CityList} />
           {/* 404 */}

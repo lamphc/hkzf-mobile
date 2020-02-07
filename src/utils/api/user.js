@@ -9,19 +9,16 @@ export const login = (data) => {
 }
 
 // 获取登录用户信息
-export const getUserInfo = (token) => {
-  return axios.get('/user', {
-    headers: {
-      authorization: token
-    }
-  })
+export const getUserInfo = () => {
+  return axios.get('/user')
 }
 
 // 退出登录
-export const logout = (token) => {
-  return axios.post('/user/logout', null, {
-    headers: {
-      authorization: token
-    }
-  })
+export const logout = () => {
+  return axios.post('/user/logout')
+}
+
+// 获取已发布房源 
+export const getUserHouses = () => {
+  return axios.get('/user/houses')
 }
