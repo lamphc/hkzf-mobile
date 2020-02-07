@@ -10,7 +10,7 @@ import { getCurrCity } from '../../utils'
 
 import { List, AutoSizer, InfiniteLoader } from 'react-virtualized';
 import HouseItem from '../../components/HouseItem'
-import { BASEURL } from '../../utils/axios'
+import { BASE_URL } from '../../utils/axios'
 import NoHouse from '../../components/NoHouse'
 
 export default class HouseList extends React.Component {
@@ -75,7 +75,7 @@ export default class HouseList extends React.Component {
     };
     // console.log(this.props.history)
     // 处理图片地址
-    item.src = BASEURL + item.houseImg;
+    item.src = BASE_URL + item.houseImg;
     // console.log(item);
     return <HouseItem {...item} key={key} onClick={() => { this.props.history.push({ pathname: `/detail/${item.houseCode}` }, { id: item.houseCode }) }} style={style} />
   }

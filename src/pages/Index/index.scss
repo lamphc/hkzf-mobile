@@ -1,3 +1,6 @@
+.indexBox{
+  background-color: #f6f5f6;
+} 
 // 顶部导航和搜索
 .topNav {
   position: fixed;
@@ -57,7 +60,7 @@
 }
 
 .nav p {
-    margin-top: 8px;
+    margin: 8px 0 10px;
     font-size: 13px;
 }
 
@@ -110,6 +113,7 @@
     padding: 10px;
     background-color: #fff;
     overflow: hidden;
+    margin-bottom: 50px;
     .group-title {
       margin: 10px 0 5px 10px;
       font-size: 15px;

@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const BASEURL = 'http://localhost:8080';
+const BASE_URL = 'http://localhost:8080';
 // 创建请求实例
 // Set config defaults when creating the instance
 const instance = axios.create({
-  baseURL: BASEURL,
+  baseURL: BASE_URL,
   timeout: 2000
 });
 
@@ -36,5 +36,5 @@ instance.interceptors.response.use(function (response) {
   return Promise.reject(error);
 });
 
-export { BASEURL }
+export { BASE_URL }
 export default instance

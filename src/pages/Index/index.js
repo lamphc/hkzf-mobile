@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Carousel, Flex, Grid, WingBlank, NavBar, SearchBar } from 'antd-mobile';
 
-import { BASEURL } from '../../utils/axios';
+import { BASE_URL } from '../../utils/axios';
 import { getSwiper, getGroup, getNews } from '../../utils/api/home';
 import { getCityInfo } from '../../utils/api/city';
 import navs from '../../utils/home_navs';
@@ -87,7 +87,7 @@ class Index extends Component {
         style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight, background: 'gray' }}
       >
         <img
-          src={`${BASEURL}${val.imgSrc}`}
+          src={`${BASE_URL}${val.imgSrc}`}
           alt=""
           style={{ width: '100%', verticalAlign: 'top' }}
           onLoad={() => {
@@ -121,7 +121,7 @@ class Index extends Component {
                   <h3>{item.title}</h3>
                   <p>{item.desc}</p>
                 </div>
-                <img src={`${BASEURL}${item.imgSrc}`} alt="" />
+                <img src={`${BASE_URL}${item.imgSrc}`} alt="" />
               </Flex>
             )
           }}
@@ -137,7 +137,7 @@ class Index extends Component {
         <div className="imgwrap">
           <img
             className="img"
-            src={`${BASEURL}${item.imgSrc}`}
+            src={`${BASE_URL}${item.imgSrc}`}
             alt=""
           />
         </div>
@@ -176,7 +176,7 @@ class Index extends Component {
 
   render() {
     return (
-      <div>
+      <div className="indexBox">
         {/* 顶部导航 */}
         {
           this.renderTopNav()
