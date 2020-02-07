@@ -1,3 +1,6 @@
+/**
+ * 工具库
+ */
 import { getCityInfo } from "./api/city";
 
 
@@ -14,6 +17,17 @@ export const setLocalData = (key, val) => {
 export const removeLocalData = (key) => {
   window.localStorage.removeItem(key)
 }
+
+// token处理
+
+const getToken = () => getLocalData(TOKEN)
+
+const setToken = val => setLocalData(TOKEN, val)
+
+const removeToken = () => removeLocalData(TOKEN)
+
+const isAuth = () => !!getToken()
+export { getToken, setToken, removeToken, isAuth }
 
 // 获取当前城市信息
 export const getCurrCity = () => {

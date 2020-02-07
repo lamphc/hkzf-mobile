@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import styles from './index.module.css'
 import { login } from '../../utils/api/user'
-import { setLocalData, TOKEN } from '../../utils'
+import { setToken } from '../../utils'
 
 import { withFormik } from 'formik'
 import * as yup from 'yup'
@@ -131,8 +131,8 @@ export default withFormik({
     let res = await login(data);
     console.log(res)
     if (res.status === 200) {
-      setLocalData(TOKEN, res.data.token);
-      formikBag.props.history.push('/')
+      setToken(res.data.token);
+      formikBag.props.history.push('/home/profile')
     } else {
       Toast.offline(res.description)
     }
