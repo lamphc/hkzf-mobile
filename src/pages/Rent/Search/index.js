@@ -5,10 +5,9 @@ import { SearchBar } from 'antd-mobile'
 import { getCurrCity } from '../../../utils'
 
 import styles from './index.module.css'
+import { getCommunity } from '../../../utils/api/city'
 
 export default class Search extends Component {
-  // 当前城市id
-  cityId = getCurrCity().value
 
   state = {
     // 搜索框的值
@@ -16,12 +15,43 @@ export default class Search extends Component {
     tipsList: []
   }
 
+  async componentDidMount() {
+    // 获取城市ID
+    const { value } = await getCurrCity();
+    this.cityId = value;
+  }
+
+  // 搜索小区
+  handlerSearch = async (v) => {
+    if (v.trim().length === 0) {
+      return this.setState({
+        searchTxt: '',
+        tipsList: []
+      })
+    }
+    this.setState({
+      searchTxt: v
+    })
+    // 获取小区列表
+    const res = await getCommunity(v, this.cityId);
+    if (res.status === 200) {
+      this.setState({
+        tipsList: res.data
+      })
+    }
+  }
+
+  // 选择小区回传
+  selectCom = (item) => {
+    this.props.history.replace('/rent/add', { id: item.community, name: item.communityName })
+  }
+
   // 渲染搜索结果列表
   renderTips = () => {
     const { tipsList } = this.state
 
     return tipsList.map(item => (
-      <li key={item.community} className={styles.tip}>
+      <li onClick={() => this.selectCom(item)} key={item.community} className={styles.tip}>
         {item.communityName}
       </li>
     ))
@@ -37,6 +67,7 @@ export default class Search extends Component {
         <SearchBar
           placeholder="请输入小区或地址"
           value={searchTxt}
+          onChange={this.handlerSearch}
           showCancelButton={true}
           onCancel={() => history.replace('/rent/add')}
         />

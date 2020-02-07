@@ -17,3 +17,13 @@ export const getCities = (level = 1) => {
 export const getHotCities = () => {
   return axios.get(`/area/hot`)
 }
+
+// 小区关键词查询
+export const getCommunity = (name, id) => {
+  return axios.get(`/area/community`, {
+    params: {
+      name,
+      id
+    }
+  })
+}
