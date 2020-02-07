@@ -24,3 +24,18 @@ export const getHouseByFilters = (cityId, params, start, end) => {
 export const getHouseDetail = (id) => {
   return axios.get(`/houses/${id}`)
 }
+
+// 获取房屋是否收藏过
+export const getHouseFav = (id) => {
+  return axios.get(`/user/favorites/${id}`)
+}
+
+// 添加收藏
+export const addFav = (id) => {
+  return axios.post(`/user/favorites/${id}`)
+}
+
+// 删除收藏
+export const delFav = (id) => {
+  return axios.delete(`/user/favorites/${id}`)
+}

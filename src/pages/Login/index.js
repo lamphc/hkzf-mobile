@@ -58,6 +58,7 @@ class Login extends Component {
       errors,
       handleChange,
       handleSubmit } = this.props;
+    console.log(this.props)
     // console.log(touched, errors)
     return (
       <div className={styles.root}>
@@ -132,7 +133,12 @@ export default withFormik({
     console.log(res)
     if (res.status === 200) {
       setToken(res.data.token);
-      formikBag.props.history.push('/home/profile')
+      const { history, location: { state } } = formikBag.props;
+      if (state && state.backUrl) {
+        history.replace(state.backUrl)
+      } else {
+        history.go(-1)
+      }
     } else {
       Toast.offline(res.description)
     }
