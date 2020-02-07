@@ -6,7 +6,7 @@ import { Grid, Button, Toast, Modal } from 'antd-mobile'
 import { BASE_URL } from '../../utils/axios'
 
 import styles from './index.module.css'
-import { isAuth, getToken, removeToken } from '../../utils'
+import { isAuth, removeToken } from '../../utils'
 import { getUserInfo, logout } from '../../utils/api/user'
 
 const alert = Modal.alert;
@@ -40,7 +40,7 @@ export default class Profile extends Component {
   getUserInfo = async () => {
     const { isLogin, userInfo } = this.state;
     if (isLogin) {
-      let res = await getUserInfo(getToken())
+      let res = await getUserInfo()
       console.log(res);
       if (res.status === 200) {
         // 处理图片路径
@@ -60,7 +60,7 @@ export default class Profile extends Component {
       { text: '取消' },
       {
         text: '确定', onPress: async () => {
-          let res = await logout(getToken());
+          let res = await logout();
           console.log(res)
           if (res.status === 200) {
             removeToken();
