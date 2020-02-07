@@ -49,7 +49,8 @@ export default class Profile extends Component {
           userInfo: res.data
         })
       } else {
-        Toast.info(res.description)
+        Toast.info(res.description);
+        removeToken();
       }
     }
   }
@@ -68,6 +69,8 @@ export default class Profile extends Component {
               isLogin: false,
               userInfo: {}
             })
+          } else {
+            this.props.history.push('/login')
           }
         }
       },
