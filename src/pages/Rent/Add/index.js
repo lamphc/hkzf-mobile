@@ -8,12 +8,14 @@ import {
   ImagePicker,
   TextareaItem,
   Modal,
-  NavBar
+  NavBar,
+  Toast
 } from 'antd-mobile'
 
 import HousePackge from '../../../components/HousePackage'
 
 import styles from './index.module.css'
+import { uploadHouseImgs, pubHouse } from '../../../utils/api/user'
 
 const alert = Modal.alert
 
@@ -117,6 +119,67 @@ export default class RentAdd extends Component {
         text: '继续编辑'
       }
     ])
+  }
+
+  // 发布房源
+  addHouse = async () => {
+    const {
+      tempSlides,
+      title,
+      description,
+      oriented,
+      supporting,
+      price,
+      roomType,
+      size,
+      floor,
+      community
+    } = this.state;
+    // 处理边界
+    if (!title || !size || !price) {
+      return Toast.info('请输入房源基本信息！', 1)
+    }
+    // 上传图片，获取上传位置
+    let houseImg;
+    if (tempSlides.length) {
+      let fm = new FormData();
+      tempSlides.forEach((item) => fm.append('file', item.file));
+      let res = await uploadHouseImgs(fm);
+      console.log(res)
+      if (res.status === 200) {
+        houseImg = res.data.join('|')
+      } else {
+        Toast.offline(res.description, 2)
+      }
+    }
+    // 处理其它数据
+    const otd = {
+      title,
+      description,
+      houseImg,
+      oriented,
+      supporting,
+      price,
+      roomType,
+      size,
+      floor,
+      community: community.id
+    };
+    let ores = await pubHouse(otd)
+    console.log('form all data:', otd)
+    if (ores.status === 200) {
+      Toast.success('发布成功！', 1, () => {
+        this.props.history.push('/rent')
+      })
+    } else {
+      if (ores.status === 400) {
+        Toast.info('请重新登录！', 1, () => {
+          // 传入回跳地址
+          this.props.history.push('/login', { backUrl: this.props.location.pathname })
+        })
+      }
+    }
+
   }
 
   render() {

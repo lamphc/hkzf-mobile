@@ -3,7 +3,7 @@ import { NavBar } from 'antd-mobile'
 
 import { Link } from 'react-router-dom'
 
-// import { getUserHouses } from '../../utils/api/user'
+import { getUserHouses } from '../../utils/api/user'
 import HouseItem from '../../components/HouseItem'
 import NoHouse from '../../components/NoHouse'
 
@@ -23,23 +23,23 @@ export default class Rent extends Component {
   }
 
   // 获取已发布房源的列表数据
-  // async getHouseList() {
-  //   const res = await getUserHouses()
+  async getHouseList() {
+    const res = await getUserHouses()
 
-  //   const { status, data } = res
-  //   if (status === 200) {
-  //     this.setState({
-  //       list: data
-  //     })
-  //   } else {
-  //     const { history } = this.props
-  //     history.replace('/login')
-  //   }
-  // }
+    const { status, data } = res
+    if (status === 200) {
+      this.setState({
+        list: data
+      })
+    } else {
+      const { history } = this.props
+      history.replace('/login')
+    }
+  }
 
-  // componentDidMount() {
-  //   this.getHouseList()
-  // }
+  componentDidMount() {
+    this.getHouseList()
+  }
 
   renderHouseItem() {
     const { list } = this.state

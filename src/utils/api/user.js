@@ -22,3 +22,13 @@ export const logout = () => {
 export const getUserHouses = () => {
   return axios.get('/user/houses')
 }
+
+// 上传房源图片
+export const uploadHouseImgs = (data) => {
+  return axios.post(`/houses/image`, data)
+}
+
+// 发布房源 
+export const pubHouse = (data) => {
+  return axios.post('/user/houses', data)
+}
