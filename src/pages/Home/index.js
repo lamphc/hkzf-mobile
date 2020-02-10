@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 
 import { Route, Link } from 'react-router-dom';
 
@@ -8,8 +8,11 @@ import tabBars from '../../utils/tabbar_config';
 import './index.scss'
 
 import Index from '../Index';
-import House from '../House';
-import Profile from '../Profile';
+// import House from '../House';
+// import Profile from '../Profile';
+// const Index = lazy(() => import('../Index'));
+const House = lazy(() => import('../House'));
+const Profile = lazy(() => import('../Profile'));
 /**
  * 首页
  * 1. 默认首页
