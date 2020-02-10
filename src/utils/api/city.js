@@ -27,3 +27,8 @@ export const getCommunity = (name, id) => {
     }
   })
 }
+
+// 获取地图区域房源信息
+export const getMapHouses = (id) => {
+  return axios.get(`/area/map?id=${id}`)
+}
