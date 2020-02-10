@@ -149,10 +149,10 @@ class Map extends Component {
 
   // 根据区域渲染覆盖物
   renderOverlays = async (id) => {
-    Toast.loading('加载中...', 0);
+    // Toast.loading('加载中...', 0);
     // 初始化区覆盖物
     let { status, data } = await getMapHouses(id);
-    Toast.hide();
+    // Toast.hide();
     // =========获取覆盖物类型和下一层缩放级别========
     const { type, nextLevel } = this.getTypeAndZoom();
     if (status === 200) {

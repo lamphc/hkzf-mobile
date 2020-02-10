@@ -122,7 +122,7 @@ export default class HouseList extends React.Component {
                 className={styles.houseList}
                 height={height}
                 rowCount={this.state.count}
-                rowHeight={140}
+                rowHeight={130}
                 rowRenderer={this.renderHouseItem}
                 onRowsRendered={onRowsRendered}
                 ref={registerChild}
