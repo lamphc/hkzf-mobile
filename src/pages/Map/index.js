@@ -4,8 +4,16 @@ import { NavBar, Icon, Toast } from 'antd-mobile';
 import styles from './index.module.css'
 import { getCurrCity } from '../../utils';
 import { getMapHouses } from '../../utils/api/city';
+import { getHouseByFilters } from '../../utils/api/house';
+import HouseItem from '../../components/HouseItem';
+import { BASE_URL } from '../../utils/axios';
 
 class Map extends Component {
+
+  state = {
+    list: [],
+    isShowList: false
+  }
 
   componentDidMount() {
     this.initMap()
@@ -61,8 +69,6 @@ class Map extends Component {
       offset: new this.BMap.Size(-50, -28)    //设置文本偏移量
     }
     const label = new this.BMap.Label(null, opts);  // 创建文本标注对象
-    // 给label添加唯一ID
-    label.id = value;
     label.setContent(`
       <div class="${styles.rect}">
         <span class="${styles.housename}">${areaName}</span>
@@ -76,10 +82,34 @@ class Map extends Component {
       border: 'none'
     });
     // 添加点击事件
-    label.addEventListener('click', () => {
-      console.log('点击小区', label.id)
+    label.addEventListener('click', (e) => {
+      console.log('点击小区', value);
+      // this.map.centerAndZoom(ipoint, 15)
+      // this.map.panTo(ipoint)
+      console.log(e);
+      this.moveToArea(e);
+      this.handlerHouseList(value)
     })
     this.map.addOverlay(label);
+  }
+
+  // 移动地图到当前小区位置
+  moveToArea = (e) => {
+    let { clientX, clientY } = e.changedTouches[0];
+    console.log(window.innerWidth / 2, (window.innerHeight - 330) / 2, clientX, clientY)
+    const x = window.innerWidth / 2 - clientX, y = (window.innerHeight - 330) / 2 - clientY;
+    console.log(x, y)
+    this.map.panBy(x, y)
+  }
+
+  // 获取小区下的房源列表
+  // 调用之前定义的根据过滤条件获取房源列表方法，传入cityId
+  handlerHouseList = async (value) => {
+    const { status, data: { list } } = await getHouseByFilters(value);
+    status === 200 && this.setState({
+      list,
+      isShowList: true
+    })
   }
 
   // 处理区和镇的情况
@@ -91,7 +121,7 @@ class Map extends Component {
     }
     const label = new this.BMap.Label(null, opts);  // 创建文本标注对象
     // 给label添加唯一ID
-    label.id = value;
+    // label.id = value;
     label.setContent(
       `
               <div class="${styles.bubble}">
@@ -108,8 +138,7 @@ class Map extends Component {
     label.addEventListener('click', () => {
       // 设置显示下一区域的位置和缩放级别
       this.map.centerAndZoom(ipoint, nextLevel);
-      console.log(label.id);
-      this.renderOverlays(label.id);
+      this.renderOverlays(value);
       // 清除第一层覆盖物
       // map.clearOverlays();
       setTimeout(() => this.map.clearOverlays());
@@ -156,6 +185,49 @@ class Map extends Component {
       }
     },
       lable);
+    this.map.addEventListener('movestart', () => {
+      if (this.state.isShowList) {
+        this.setState({
+          isShowList: false
+        })
+      }
+    })
+  }
+
+  // 渲染小区下房屋列表
+  renderHouseList = () => {
+    return (
+      <div
+        className={[
+          styles.houseList,
+          this.state.isShowList ? styles.show : ''
+        ].join(' ')}
+      >
+        <div className={styles.titleWrap}>
+          <h1 className={styles.listTitle}>房屋列表</h1>
+          <a className={styles.titleMore} href="/home/house">
+            更多房源
+    </a>
+        </div>
+
+        <div className={styles.houseItems}>
+          {/* 房屋结构 */}
+          {
+            this.state.list.map(item => (
+              <HouseItem
+                onClick={() => this.props.history.push(`/detail/${item.houseCode}`)}
+                key={item.houseCode}
+                src={BASE_URL + item.houseImg}
+                title={item.title}
+                desc={item.desc}
+                tags={item.tags}
+                price={item.price}
+              />
+            ))
+          }
+        </div>
+      </div>
+    )
   }
   render() {
     return (
@@ -170,6 +242,10 @@ class Map extends Component {
           地图
 </NavBar>
         <div id="container"></div>
+        {/* 房源列表 */}
+        {
+          this.renderHouseList()
+        }
       </div>
     );
   }
