@@ -39,7 +39,7 @@ function App() {
             {/* <Link to="/home">首页</Link>
         <Link to="/cityList">城市选择</Link> */}
             {/* 一级路由 */}
-            <Route exact path="/" render={() => <Redirect to="/home/index" />} />
+            <Route exact path="/" render={() => <Redirect to="/home" />} />
             <Route path="/home" component={Home} />
             {/* 房屋 */}
             <Route path="/detail/:id" component={HouseDetail} />
