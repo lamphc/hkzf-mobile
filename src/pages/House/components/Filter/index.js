@@ -189,7 +189,12 @@ export default class Filter extends Component {
       const { roomType, oriented, floor, characteristic } = this.filterData;
       const data = { roomType, oriented, floor, characteristic }
       console.log('n-sel:', this.selectedValues[openType]);
-      return <FilterMore data={data} value={this.selectedValues[openType]} type={openType} onOk={this.onOk} onCancel={this.onCancel} />
+      return <FilterMore
+        data={data}
+        value={this.selectedValues[openType]}
+        onOk={this.onOk}
+        onCancel={this.onCancel}
+      />
     }
     return null
   }
