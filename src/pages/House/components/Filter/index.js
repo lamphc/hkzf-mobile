@@ -84,13 +84,13 @@ export default class Filter extends Component {
   // 处理筛选器选中后有无条件的高亮状态
   handlerSel = () => {
     // 创建新的标题选中状态对象
-    const newTitleSelectedStatus = { ...titleSelectedStatus }
+    const newTitleSelectedStatus = {};
     Object.keys(this.selectedValues).forEach((key) => {
       let cur = this.selectedValues[key];
       if (
         (key === 'area') && (cur[1] !==
           "null" || cur[0] === 'subway')) {
-        newTitleSelectedStatus['area'] = true
+        newTitleSelectedStatus[key] = true
       } else if (key === 'mode' && cur[0] !== "null") {
         newTitleSelectedStatus[key] = true
       } else if (key === 'price' && cur[0] !== "null") {

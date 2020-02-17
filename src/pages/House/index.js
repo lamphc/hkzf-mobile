@@ -40,14 +40,14 @@ export default class HouseList extends React.Component {
   getHouseList = async () => {
     // 加载提示
     // 第二个参数为0，不自动关闭
-    Toast.loading('加载中...', 0)
+    // Toast.loading('加载中...', 0)
     let res = await getHouseByFilters(this.cityId, this.filters, 1, 20);
     console.log(res);
     // 调用hide关闭
-    Toast.hide();
+    // Toast.hide();
     const { list, count } = res.data;
     if (count !== 0) {
-      Toast.success(`获取到${count}条房源信息`)
+      Toast.success(`获取到${count}条房源信息`, 2)
     }
     this.setState({
       list,
