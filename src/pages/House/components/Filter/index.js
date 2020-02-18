@@ -124,7 +124,7 @@ export default class Filter extends Component {
     }
     filters[areaKey] = aval;
     // mode
-    filters.mode = mode[0]
+    filters.rentType = mode[0]
     // price
     filters.price = price[0]
     // more
