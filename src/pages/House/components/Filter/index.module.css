@@ -1,9 +1,8 @@
 .root {
-  position: fixed;
+  position: relative;
   width: 100%;
   z-index: 3;
   height: 40px;
-  top: 0;
 }
 
 .mask {

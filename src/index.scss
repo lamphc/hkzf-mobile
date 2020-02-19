@@ -20,8 +20,8 @@ ul,li {
 }
 
 * {
-    touch-action: pan-y;
-    /* touch-action: none; */
+    // touch-action: pan-y;
+    touch-action: none; 
     box-sizing: border-box; 
 }
 
@@ -29,5 +29,3 @@ ul,li {
 .app, #root,#container {
     height: 100%;
 }
-
-.scrollAuto{overflow:hidden;}
