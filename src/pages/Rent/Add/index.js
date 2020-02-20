@@ -12,7 +12,7 @@ import {
   Toast
 } from 'antd-mobile'
 
-import HousePackge from '../../../components/HousePackage'
+import HousePackage from '../../../components/HousePackage'
 
 import styles from './index.module.css'
 import { uploadHouseImgs, pubHouse } from '../../../utils/api/user'
@@ -149,7 +149,7 @@ export default class RentAdd extends Component {
       if (res.status === 200) {
         houseImg = res.data.join('|')
       } else {
-        Toast.offline(res.description, 2)
+        Toast.fail(res.description, 2)
       }
     }
     // 处理其它数据
@@ -292,7 +292,7 @@ export default class RentAdd extends Component {
           renderHeader={() => '房屋配置'}
           data-role="rent-list"
         >
-          <HousePackge select onSelect={this.selPack} />
+          <HousePackage select onSelect={this.selPack} />
         </List>
 
         <List

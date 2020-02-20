@@ -23,7 +23,8 @@ export default class Search extends Component {
 
   // 搜索小区
   handlerSearch = async (v) => {
-    if (v.trim().length === 0) {
+    v = v.trim();
+    if (v.length === 0) {
       return this.setState({
         searchTxt: '',
         tipsList: []
