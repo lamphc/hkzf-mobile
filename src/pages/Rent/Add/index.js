@@ -65,7 +65,7 @@ export default class RentAdd extends Component {
       // 价格
       price: '',
       // 面积
-      size: 0,
+      size: '',
       // 房屋类型
       roomType: '',
       // 楼层
@@ -219,13 +219,13 @@ export default class RentAdd extends Component {
           >
             小区名称
           </Item>
-          <InputItem placeholder="请输入租金/月" extra="￥/月" value={price}
+          <InputItem placeholder="请输入租金/月" extra="￥/月" type="number" value={price}
             onChange={(v) => {
               this.getInputVal('price', v)
             }}>
             租&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金
           </InputItem>
-          <InputItem placeholder="请输入建筑面积" extra="㎡" value={size}
+          <InputItem placeholder="请输入建筑面积" extra="㎡" type="number" value={size}
             onChange={(v) => {
               this.getInputVal('size', v)
             }}

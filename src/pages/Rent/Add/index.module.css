@@ -16,7 +16,7 @@
 }
 
 .cancel {
-  color: #21b97a;
+  color: #333;
   background-color: #fff;
   height: 100%;
   line-height: 45px;
@@ -102,12 +102,12 @@
 }
 
 .title :global(.am-list-header) {
-  color: #333;
+  /* color: #333; */
   font-size: 14px;
 }
 
 .pics :global(.am-list-header) {
-  color: #333;
+  /* color: #333; */
   font-size: 14px;
 }
 
@@ -126,6 +126,6 @@
 }
 
 .desc :global(.am-list-header) {
-  color: #333;
+  /* color: #333; */
   font-size: 14px;
 }
