@@ -169,11 +169,11 @@ class Map extends Component {
     // 创建地图实例 
     this.map = new this.BMap.Map("container");
     // 获取定位城市
-    const { value, lable } = await getCurrCity();
+    const { value, label } = await getCurrCity();
     // 创建地址解析器实例     
     let myGeo = new this.BMap.Geocoder();
     // 将地址解析结果显示在地图上，并调整地图视野    
-    myGeo.getPoint(lable, async (point) => {
+    myGeo.getPoint(null, async (point) => {
       if (point) {
         // 初始化地图，设置中心点坐标和地图级别  
         this.map.centerAndZoom(point, 11);
@@ -184,7 +184,7 @@ class Map extends Component {
         this.renderOverlays(value)
       }
     },
-      lable);
+      label);
     this.map.addEventListener('movestart', () => {
       if (this.state.isShowList) {
         this.setState({
