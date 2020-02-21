@@ -9,6 +9,7 @@ import {
   TextareaItem,
   Modal,
   NavBar,
+  Icon,
   Toast
 } from 'antd-mobile'
 
@@ -201,6 +202,7 @@ export default class RentAdd extends Component {
       <div className={styles.root}>
         <NavBar
           className={styles.navHeader}
+          icon={<Icon type="left" />}
           mode="dark"
           onLeftClick={this.onCancel}
         >
@@ -208,7 +210,7 @@ export default class RentAdd extends Component {
         </NavBar>
         <List
           className={styles.header}
-          renderHeader={() => '房源信息'}
+          renderHeader={() => '基本信息'}
           data-role="rent-list"
         >
           {/* 选择所在小区 */}

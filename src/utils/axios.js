@@ -2,6 +2,17 @@ import axios from 'axios';
 import { getToken } from '.';
 import { Toast } from 'antd-mobile';
 
+import { withRouter } from 'react-router-dom'
+
+// 获取路由能力
+let rt;
+const Sys = (props) => {
+  rt = props;
+  return null
+}
+export const Rou = withRouter(Sys);
+export { rt };
+
 const BASE_URL = 'http://localhost:8080';
 // 创建请求实例
 // Set config defaults when creating the instance

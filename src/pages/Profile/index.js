@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Grid, Button, Toast, Modal } from 'antd-mobile'
 
-import { BASE_URL } from '../../utils/axios'
+import { BASE_URL, rt } from '../../utils/axios'
 
 import styles from './index.module.css'
 import { isAuth, removeToken } from '../../utils'
@@ -49,8 +49,9 @@ export default class Profile extends Component {
           userInfo: res.data
         })
       } else {
-        Toast.info(res.description);
         removeToken();
+        rt.history.push('/login');
+        Toast.info(res.description);
       }
     }
   }

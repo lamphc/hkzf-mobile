@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-ro
 import AuthRoute from './components/AuthRoute'
 // 导入业务功能组件
 import Home from './pages/Home';
+import { Rou } from './utils/axios';
 // const Home = lazy(() => import('./pages/Home'));
 // import CityList from './pages/CityList';
 // import Map from './pages/Map';
@@ -34,6 +35,7 @@ function App() {
     <Router>
       <Suspense fallback={<center>loading...</center>}>
         <div className="app">
+          <Rou />
           <Switch>
             {/* <Button type="primary">按钮</Button> */}
             {/* <Link to="/home">首页</Link>
