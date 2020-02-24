@@ -170,12 +170,15 @@ class Map extends Component {
     this.map = new this.BMap.Map("container");
     // 获取定位城市
     const { value, label } = await getCurrCity();
+    // 处理重置
+    this.cityId = value;
     // 创建地址解析器实例     
     let myGeo = new this.BMap.Geocoder();
     // 将地址解析结果显示在地图上，并调整地图视野    
     myGeo.getPoint(null, async (point) => {
       if (point) {
-        // 初始化地图，设置中心点坐标和地图级别  
+        // 初始化地图，设置中心点坐标和地图级别
+        this.initPoint = point;
         this.map.centerAndZoom(point, 11);
         // 添加控件
         this.map.addControl(new this.BMap.NavigationControl());
@@ -192,6 +195,17 @@ class Map extends Component {
         })
       }
     })
+  }
+
+  // 处理地图找房重置功能
+  resetMap = () => {
+    if (this.map.getZoom() === 11) return;
+    // 重置为当前城市坐标和缩放级别
+    this.map.centerAndZoom(this.initPoint, 11);
+    // 渲染城市下区的=》覆盖物
+    this.renderOverlays(this.cityId)
+    // 删除当前覆盖物
+    setTimeout(() => this.map.clearOverlays());
   }
 
   // 渲染小区下房屋列表
@@ -246,6 +260,8 @@ class Map extends Component {
         {
           this.renderHouseList()
         }
+        {/* 重置按钮 */}
+        <div onClick={this.resetMap} id='reset'><i className="iconfont icon-cls"></i></div>
       </div>
     );
   }

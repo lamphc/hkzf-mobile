@@ -6,6 +6,24 @@
   color:red
 }
 
+:global(#reset) {
+  position: fixed;
+  z-index: 100;
+  font-size: 24px;
+  color:#000;
+  right:10px;
+  top: 50px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 1px 1px 2px #666;
+  opacity: .8;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
 /* 覆盖物样式 */
 .bubble {
     width: 70px;
