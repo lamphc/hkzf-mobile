@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3951f01ff92fdb8098413d6363c733e9",
+    "revision": "1972e39e32707892582e84a1e720a839",
     "url": "/hkzf-mobile/index.html"
   },
   {
@@ -60,7 +60,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hkzf-mobile/static/css/9.d4867ff4.chunk.css"
   },
   {
-    "revision": "42a662ea861927efbd25",
+    "revision": "8d54af977aea5ad6381f",
     "url": "/hkzf-mobile/static/css/main.02ea8f1c.chunk.css"
   },
   {
@@ -128,8 +128,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hkzf-mobile/static/js/9.1d51720e.chunk.js"
   },
   {
-    "revision": "42a662ea861927efbd25",
-    "url": "/hkzf-mobile/static/js/main.790e4475.chunk.js"
+    "revision": "8d54af977aea5ad6381f",
+    "url": "/hkzf-mobile/static/js/main.84167af8.chunk.js"
   },
   {
     "revision": "1e4f20fa3b8ef33c9bf5",
