@@ -13,8 +13,9 @@ const Sys = (props) => {
 export const Rou = withRouter(Sys);
 export { rt };
 
-const BASE_URL = 'http://localhost:8080';
+// const BASE_URL = 'http://localhost:8080';
 // const BASE_URL = 'http://api-haoke-dev.itheima.net'
+const BASE_URL = 'https://api-haoke-web.itheima.net'
 // 创建请求实例
 // Set config defaults when creating the instance
 const instance = axios.create({
