@@ -44,7 +44,9 @@ export default class Profile extends Component {
       console.log(res);
       if (res.status === 200) {
         // 处理图片路径
-        res.data.avatar = BASE_URL + res.data.avatar;
+        if (res.data.avatar) {
+          res.data.avatar = BASE_URL + res.data.avatar;
+        }
         this.setState({
           userInfo: res.data
         })
