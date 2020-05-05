@@ -1,4 +1,7 @@
 # [好客租房](https://lamphc.github.io/hkzf-mobile)
+
+![project deploy](https://github.com/lamphc/hkzf-mobile/workflows/project%20deploy/badge.svg?branch=dev&event=push)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
