@@ -15,6 +15,6 @@ jobs:
       - name: Login
         run: git config --global user.email "lamphc@live.com" && git config --global user.name "lamphc"
       - name: Dkey
-        run: git remote set-url origin https://8c2888bc08a3fbdcda6b72e16cb75d3853109dba@github.com/lamphc/hkzf-mobile.git
+        run: git remote set-url origin https://8c2888bc08a3fbdcda6b72e16cb75d3853109dba>@github.com/lamphc>/hkzf-mobile>.git
       - name: Build
         run: npm install && npm run deploy
