@@ -163,10 +163,9 @@ export default class Filter extends Component {
           data = rentType;
           cols = 1
           break;
-        case 'price':
+        default:
           data = price;
           cols = 1
-          break;
       }
       console.log('n-sel:', this.selectedValues[openType])
       return <FilterPicker key={openType} data={data} value={this.selectedValues[openType]} cols={cols} onCancel={this.onCancel} onOk={this.onOk} />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Flex, Toast } from 'antd-mobile'
+import { Toast } from 'antd-mobile'
 
 import Filter from './components/Filter'
 // 导入样式

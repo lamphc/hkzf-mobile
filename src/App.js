@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 // import { Button } from 'antd-mobile';
 
-import { HashRouter as Router, Link, Route, Redirect, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 // 路由守卫
 import AuthRoute from './components/AuthRoute'
 // 导入业务功能组件

@@ -1,6 +1,6 @@
 import React, { Component, lazy } from 'react';
 
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { TabBar } from 'antd-mobile';
 import tabBars from '../../utils/tabbar_config';

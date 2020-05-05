@@ -38,7 +38,7 @@ export default class Profile extends Component {
   }
   // 获取用户数据
   getUserInfo = async () => {
-    const { isLogin, userInfo } = this.state;
+    const { isLogin } = this.state;
     if (isLogin) {
       let res = await getUserInfo()
       console.log(res);

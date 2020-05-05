@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Carousel, Flex, Grid, WingBlank, NavBar, SearchBar } from 'antd-mobile';
+import { Carousel, Flex, Grid, WingBlank, SearchBar } from 'antd-mobile';
 
 import { BASE_URL } from '../../utils/axios';
 import { getSwiper, getGroup, getNews } from '../../utils/api/home';
-import { getCityInfo } from '../../utils/api/city';
+// import { getCityInfo } from '../../utils/api/city';
 import navs from '../../utils/home_navs';
 
 import './index.scss';
@@ -72,7 +72,7 @@ class Index extends Component {
   // 渲染菜单
   renderNavs = () => {
     return navs.map((item) => <Flex.Item onClick={() => this.props.history.push(item.path)} key={item.id}>
-      <img src={item.img} />
+      <img alt="" src={item.img} />
       <p>{item.title}</p>
     </Flex.Item>)
   }
