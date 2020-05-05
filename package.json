@@ -29,7 +29,9 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "no-console": 0
+      "no-undef": "off",
+      "no-restricted-globals": "off",
+      "no-unused-vars": "off"
     }
   },
   "browserslist": {
