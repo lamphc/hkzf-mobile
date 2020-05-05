@@ -1,19 +1,16 @@
-name: Mark stale issues and pull requests
+name: project deploy
 
 on:
-  schedule:
-  - cron: "0 0 * * *"
+  push:
+    branches:
+      - dev
 
 jobs:
-  stale:
-
+  build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/stale@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Stale issue message'
-        stale-pr-message: 'Stale pull request message'
-        stale-issue-label: 'no-issue-activity'
-        stale-pr-label: 'no-pr-activity'
+      - name: Checkout
+      - uses: actions/checkout@dev
+      - run: npm install
+      - run: npm run deploy

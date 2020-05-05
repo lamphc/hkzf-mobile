@@ -35,7 +35,7 @@ class Home extends Component {
 
   listenRouter = () => {
     // 监听路由变化 => 不能用PureCompotent做性能优化
-    this.props.history.listen((location) => {
+    this.unlisten = this.props.history.listen((location) => {
       if (location.pathname !== this.state.selectedTab) {
         this.setState({
           selectedTab: location.pathname,
@@ -43,6 +43,12 @@ class Home extends Component {
       }
 
     })
+  }
+
+  // 组件销毁
+  componentWillUnmount() {
+    // 销毁路由监听事件
+    this.unlisten()
   }
 
 
