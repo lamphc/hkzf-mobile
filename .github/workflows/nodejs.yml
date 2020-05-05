@@ -1,0 +1,26 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Issue Notice
+
+on:
+  issues:
+    create: [dev]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+    - uses: jerray/work-weixin-notifier@v1.0.0
+      if: always()
+      with:
+       key: ${{ secrets.ZFW_TOKEN }}
+       type: text
+       content: '{{ github.Repository }} build finished'
+       status: ${{ job.status }}
