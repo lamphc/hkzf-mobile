@@ -11,7 +11,6 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@dev
-      - name: Build
-        run: npm install
-        run: npm run deploy
+      - uses: actions/checkout@dev
+      - run: npm install
+      - run: npm run deploy
