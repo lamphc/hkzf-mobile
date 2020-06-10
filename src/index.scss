@@ -1,8 +1,8 @@
 html,
 body {
-    height: 100%;
-    color: #333;
-    background: #fff;
+  height: 100%;
+  color: #333;
+  background: #fff;
 }
 
 h1,
@@ -12,20 +12,22 @@ p,
 ul,
 dd {
   margin: 0;
-  padding:0;
+  padding: 0;
 }
 
-ul,li {    
-    list-style: none;
+ul,
+li {
+  list-style: none;
 }
 
 * {
-    // touch-action: pan-y;
-    touch-action: none; 
-    box-sizing: border-box; 
+  touch-action: pan-y;
+  // touch-action: none;
+  box-sizing: border-box;
 }
 
-
-.app, #root,#container {
-    height: 100%;
+.app,
+#root,
+#container {
+  height: 100%;
 }
