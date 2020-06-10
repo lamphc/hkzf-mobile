@@ -102,7 +102,7 @@ export default class Profile extends Component {
                 <div className={styles.auth}>
                   <span onClick={this.logout}>退出</span>
                 </div>
-                <div className={styles.edit}>
+                <div style={{ color: 'orange' }} className={styles.edit}>
                   编辑个人资料
     <span className={styles.arrow}>
                     <i className="iconfont icon-arrow" />
