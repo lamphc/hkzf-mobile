@@ -15,15 +15,15 @@ export default class Search extends Component {
     tipsList: []
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     // 获取城市ID
-    const { value } = await getCurrCity();
-    this.cityId = value;
+    const { value } = await getCurrCity()
+    this.cityId = value
   }
 
   // 搜索小区
-  handlerSearch = async (v) => {
-    v = v.trim();
+  handlerSearch = (v) => {
+    v = v.trim()
     if (v.length === 0) {
       return this.setState({
         searchTxt: '',
@@ -32,19 +32,24 @@ export default class Search extends Component {
     }
     this.setState({
       searchTxt: v
+    }, () => {
+      this.timer && clearTimeout(this.timer)
+      this.timer = setTimeout(async () => {
+        // 获取小区列表
+        const res = await getCommunity(v, this.cityId)
+        if (res.status === 200) {
+          this.setState({
+            tipsList: res.data
+          })
+        }
+      }, 600)
     })
-    // 获取小区列表
-    const res = await getCommunity(v, this.cityId);
-    if (res.status === 200) {
-      this.setState({
-        tipsList: res.data
-      })
-    }
+
   }
 
   // 选择小区回传
   selectCom = (item) => {
-    this.props.history.replace('/rent/add', { id: item.community, name: item.communityName })
+    this.props.history.replace({ pathname: '/rent/add', state: { id: item.community, name: item.communityName } })
   }
 
   // 渲染搜索结果列表
@@ -58,7 +63,7 @@ export default class Search extends Component {
     ))
   }
 
-  render() {
+  render () {
     const { history } = this.props
     const { searchTxt } = this.state
 
