@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Carousel, Flex, Grid, WingBlank, SearchBar } from 'antd-mobile';
+import React, { Component } from 'react'
+import { Carousel, Flex, Grid, WingBlank, SearchBar } from 'antd-mobile'
 
-import { BASE_URL } from '../../utils/axios';
-import { getSwiper, getGroup, getNews } from '../../utils/api/home';
+import { BASE_URL } from '../../utils/axios'
+import { getSwiper, getGroup, getNews } from '../../utils/api/home'
 // import { getCityInfo } from '../../utils/api/city';
-import navs from '../../utils/home_navs';
+import navs from '../../utils/home_navs'
 
-import './index.scss';
-import { getCurrCity } from '../../utils';
+import './index.scss'
+import { getCurrCity } from '../../utils'
 
 
 class Index extends Component {
@@ -23,7 +23,7 @@ class Index extends Component {
       value: ''
     }
   }
-  componentDidMount() {
+  componentDidMount () {
     this.getCurrCity()
 
   }
@@ -31,12 +31,12 @@ class Index extends Component {
 
 
   // 获取当前城市信息
-  async getCurrCity() {
-    let data = await getCurrCity();
+  async getCurrCity () {
+    let data = await getCurrCity()
     this.setState({
       currCity: data
     }, () => {
-      this.loadDatas();
+      this.loadDatas()
     })
 
   }
@@ -55,9 +55,9 @@ class Index extends Component {
 
   // 获取初始化数据
   loadDatas = async () => {
-    const apis = [getSwiper(), getGroup(this.state.currCity.value), getNews(this.state.currCity.value)];
-    let res = await Promise.all(apis);
-    console.log('all datas:', res);
+    const apis = [getSwiper(), getGroup(this.state.currCity.value), getNews(this.state.currCity.value)]
+    let res = await Promise.all(apis)
+    console.log('all datas:', res)
     this.setState({
       swiper: res[0].data,
       group: res[1].data,
@@ -79,7 +79,7 @@ class Index extends Component {
 
   // 渲染轮播图
   renderCarousel = () => {
-    console.log('d', this.state.swiper);
+    console.log('d', this.state.swiper)
     return this.state.swiper.map(val => (
       <a
         key={val.id}
@@ -92,8 +92,8 @@ class Index extends Component {
           style={{ width: '100%', verticalAlign: 'top' }}
           onLoad={() => {
             // fire window resize event to change height
-            window.dispatchEvent(new Event('resize'));
-            this.setState({ imgHeight: 'auto' });
+            window.dispatchEvent(new Event('resize'))
+            this.setState({ imgHeight: 'auto' })
           }}
         />
       </a>
@@ -131,7 +131,7 @@ class Index extends Component {
   }
 
   // 渲染新闻列表
-  renderNews() {
+  renderNews () {
     return this.state.news.map(item => (
       <div className="news-item" key={item.id}>
         <div className="imgwrap">
@@ -154,7 +154,7 @@ class Index extends Component {
 
   // 渲染顶部导航
   renderTopNav = () => {
-    const { push } = this.props.history;
+    const { push } = this.props.history
     return (
       <Flex justify="around" className="topNav">
         <div className="searchBox">
@@ -168,13 +168,14 @@ class Index extends Component {
           />
         </div>
         <div className="map">
-          <i key="0" className="iconfont icon-map" onClick={() => push('/map')} />
+          {/* <i key="0" className="iconfont icon-map" onClick={() => push('/map')} /> */}
+          <a href="/#/map"><i key="0" className="iconfont icon-map" /></a>
         </div>
       </Flex>
     )
   }
 
-  render() {
+  render () {
     return (
       <div className="indexBox">
         {/* 顶部导航 */}
@@ -202,8 +203,8 @@ class Index extends Component {
           <WingBlank size="md">{this.renderNews()}</WingBlank>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Index;
+export default Index
