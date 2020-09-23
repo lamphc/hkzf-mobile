@@ -9,6 +9,8 @@ import navs from '../../utils/home_navs'
 import './index.scss'
 import { getCurrCity } from '../../utils'
 
+import { Link } from 'react-router-dom'
+
 
 class Index extends Component {
   state = {
@@ -169,7 +171,7 @@ class Index extends Component {
         </div>
         <div className="map">
           {/* <i key="0" className="iconfont icon-map" onClick={() => push('/map')} /> */}
-          <a href="/#/map"><i key="0" className="iconfont icon-map" /></a>
+          <Link to="/map"><i key="0" className="iconfont icon-map" /></Link>
         </div>
       </Flex>
     )
@@ -178,6 +180,7 @@ class Index extends Component {
   render () {
     return (
       <div className="indexBox">
+        {/* <Link to="/map">123</Link> */}
         {/* 顶部导航 */}
         {
           this.renderTopNav()
